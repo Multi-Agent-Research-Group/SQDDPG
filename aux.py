@@ -1,5 +1,6 @@
 from collections import namedtuple
 from models.maddpg import *
+from models.m3ddpg import *
 from models.sqddpg import *
 from models.independent_ac import *
 from models.independent_ddpg import *
@@ -8,6 +9,8 @@ from models.coma_fc import *
 
 
 maddpgArgs = namedtuple( 'maddpgArgs', [] )
+
+m3ddpgArgs = namedtuple( 'm3ddpgArgs', [] )
 
 randomArgs = namedtuple( 'randomArgs', [] )
 
@@ -20,6 +23,7 @@ comafcArgs = namedtuple( 'comafcArgs', [] )
 
 
 Model = dict(maddpg=MADDPG,
+             m3ddpg=M3DDPG,
              sqddpg=SQDDPG,
              independent_ac=IndependentAC,
              independent_ddpg=IndependentDDPG,
@@ -29,6 +33,7 @@ Model = dict(maddpg=MADDPG,
 
 
 AuxArgs = dict(maddpg=maddpgArgs,
+               m3ddpg=m3ddpgArgs,
                sqddpg=sqddpgArgs,
                independent_ac=independentArgs,
                independent_ddpg=independentArgs,
@@ -38,6 +43,7 @@ AuxArgs = dict(maddpg=maddpgArgs,
 
 
 Strategy=dict(maddpg='pg',
+              m3ddpg='pg',
               sqddpg='pg',
               independent_ac='pg',
               independent_ddpg='pg',
@@ -58,6 +64,11 @@ Args = namedtuple('Args', ['model_name',
                            'max_steps',
                            'batch_size', # steps<-online/episodes<-offline
                            'gamma',
+                           'adv_eps',
+                           'adv_eps_s',
+                           'use_m3ddpg_bad',
+                           'num_adversaries',
+                           'use_m3ddpg_good',
                            'normalize_advantages',
                            'entr',
                            'entr_inc',

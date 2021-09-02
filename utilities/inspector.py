@@ -10,6 +10,13 @@ def inspector(args):
         assert args.gumbel_softmax is True
         assert args.epsilon_softmax is False
         assert args.online is True
+    elif args.model_name is 'm3ddpg':
+        assert args.replay is True
+        assert args.q_func is True
+        assert args.target is True
+        assert args.gumbel_softmax is True
+        assert args.epsilon_softmax is False
+        assert args.online is True
     elif args.model_name is 'independent_ac':
         assert args.replay is True
         assert args.q_func is True
